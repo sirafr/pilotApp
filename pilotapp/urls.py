@@ -15,8 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http.response import HttpResponse
+from . import views
+
+
+def home_view(request):
+    return HttpResponse("Home Page")
 
 urlpatterns = [
-    path('app1',include('app1.urls')),
     path('admin/', admin.site.urls),
+    path('app1/',include('app1.urls')),
+    path('',views.home_view) # this is the homepage, doesn't need a path/path
+    
 ]
