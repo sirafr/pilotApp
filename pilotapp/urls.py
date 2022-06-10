@@ -25,6 +25,6 @@ def home_view(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('app1/',include('app1.urls')),
-    path('',views.home_view) # this is the homepage, doesn't need a path/path
+    path('',views.home_view) # this is the homepage, doesn't need a .../path
     
 ]
