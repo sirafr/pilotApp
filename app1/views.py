@@ -1,3 +1,4 @@
+from curses.ascii import HT
 from django.shortcuts import render
 from django.http.response import HttpResponse
 
@@ -13,8 +14,13 @@ articles = {
 }
 
 
-def sports_view(request):
-    return HttpResponse(articles['sports'])
+def news_view(request,topic):
+    return HttpResponse(articles[topic])
 
-def finance_view(request):
-    return HttpResponse(articles['finance'])
+def add_view(request,num1,num2):
+    # domain.com/app1/num1/num2
+    add_result = num1+num2
+    result = f"{num1}+{num2}={add_result}"
+
+    return HttpResponse(str(result))
+
