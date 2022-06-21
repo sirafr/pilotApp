@@ -6,7 +6,7 @@ from . import views
 # APP1 => First_app
 
 urlpatterns = [
-    path('<int:num_page>/',views.num_page_view),
-    path('<str:topic>/', views.news_view,name="topic-page"),
-    
+    path('',views.simple_view) #domain.com/app1
+
+
 ]
