@@ -1,11 +1,5 @@
-from curses.ascii import HT
-from django.shortcuts import render
-from django.http.response import HttpResponse, HttpResponseNotFound,Http404
-
-
-# Create your views here.
-# def index(requests):
-#     return HttpResponse("First view in app1")
+from django.shortcuts import render, redirect
+from django.http.response import HttpResponse, HttpResponseNotFound,Http404, HttpResponseRedirect
 
 articles = {
     'sports':'Sports Page',
@@ -13,21 +7,26 @@ articles = {
     'politics':'Politics Page'
 }
 
-
+# domain.com/first_app/0---> domain.com/first_app/sports
 def news_view(request,topic):
     try:
         result = articles[topic]
         return HttpResponse(articles[topic])
     except:
         result = "No page for that topic"
-        raise Http404("result")
+        raise Http404(result)
 
-    return HttpResponse(articles[topic])
 
-def add_view(request,num1,num2):
-    # domain.com/app1/num1/num2
-    add_result = num1+num2
-    result = f"{num1}+{num2}={add_result}"
+def num_page_view(request, num_page):
+    url_base = "/app1/"
+    topics_list = list(articles.keys()) # [sports,finance,politics]
+    topic = topics_list[num_page]
 
-    return HttpResponse(str(result))
- 
+    return HttpResponseRedirect(f"{url_base}{topic}")
+
+
+
+
+
+
+
